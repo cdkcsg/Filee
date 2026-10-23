@@ -18,7 +18,7 @@ Filee chooses engines automatically. Settings → *Engines* shows their status, 
 | Fonts | built in | **TTF, OTF, WOFF, WOFF2, EOT ↔ each other**; **FON (NE monochrome FNT v2/v3, supported single-byte charsets) → TTF, OTF, WOFF, WOFF2, EOT only**; CFF (PostScript) outlines become TrueType for TTF and EOT |
 | **HWPX writer** | built in | **DOCX (+ DOCM/DOTX/DOTM), XLSX (+ XLSM/XLTX), XLS, ODS, CSV, TSV, PPTX (+ PPTM/POTX/POTM/PPSX), PDF, OFD, HTML, MHTML, EPUB, MOBI/AZW3, FB2, HWPX, TXT, Markdown → HWPX** (and with rhwp → PDF and images); ODT, RTF, reStructuredText, LaTeX → HWPX with Pandoc |
 | **DOCX writer** | built in | **HWPX (and HWP through rhwp), PDF, OFD, HTML, MHTML, EPUB, MOBI/AZW3, FB2, Markdown, TXT, XLSX, XLS, ODS, CSV, PPTX (+ variants) → DOCX** |
-| PDF text | built in (PdfPig) | **PDF → TXT, Markdown** (reading order, also two columns; Markdown keeps headings, emphasis, links and the pictures; no OCR) |
+| PDF text | built in (PdfPig) | **PDF → TXT, Markdown** (reading order, also two columns; Markdown keeps headings, emphasis, links and the pictures; no OCR — with MinerU installed, PDF → Markdown goes through it instead: formulas as LaTeX, tables, scan OCR) |
 | PDF slides | built in (PDFium, PdfPig) | **PDF → PPTX**: a picture of each page on its own slide (looks like the PDF, not editable), the page's text in the speaker notes |
 | PDF tables | built in (PdfPig) | **PDF → XLSX, ODS, CSV** (#267): each table drawn with lines on its own sheet, numbers and dates as real values, merged cells and column widths kept |
 | E-mail | built in (MimeKit, MsgReader) | **EML, Outlook MSG → HTML** (headers + body, inline pictures), **TXT**, **ZIP** (the attachments); **MSG → EML**; **MHTML → HTML** (the saved page in one file, pictures inlined; on to PDF, DOCX, HWPX, TXT, Markdown, EPUB from there) |
@@ -41,6 +41,7 @@ Filee chooses engines automatically. Settings → *Engines* shows their status, 
 | Calibre | **optional download** (~216 MB, 660 MB on disk) | rare e-book formats: LIT, LRF, CHM, PDB, PML, RB, SNB, TCR, OEB → EPUB; EPUB → MOBI, AZW3, LIT, LRF, PDB, PML, RB, SNB, TCR; e-books → PDF (ranked above the HWPX writer, see below) |
 | Whisper | **optional download** (Windows only; ~157 MB with model, ~160 MB on disk) | **Speech-to-text transcription**: video and audio → SRT subtitles or plain TXT in ~100 languages using OpenAI Whisper (whisper.cpp); runs locally and offline; needs FFmpeg |
 | ExifTool | **optional download** (~11 MB on Windows, ~8 MB elsewhere; 30 MB on disk) | **the Metadata tool**: reads every metadata field of pictures, PDFs, video and sound, and writes changes into a copy in the file's own format without re-encoding it (JPG, PNG, TIFF, WEBP, HEIC, AVIF, JPEG XL, GIF, PSD, camera RAW, PDF, MP4, MOV, M4A, 3GP, …; not MP3, FLAC, WAV, MKV, AVI or BMP, which it shows read-only). Without it the Metadata tool shows nothing and offers it |
+| MinerU (4.x: mineru-kit, 1.x: magic-pdf) | **never downloaded by Filee** — the user installs it themselves (~4 GB on disk for 4.x, ~10 GB for 1.x: Python + models) and picks its folder in Settings → *Engines* | **PDF → Markdown** with layout analysis: formulas as LaTeX, tables, reading order and OCR of scans; preferred over the built-in PDF → Markdown while it is installed. 4.x is about three times faster than 1.x and writes Markdown tables where 1.x writes HTML tables (a 15-page paper: 73 s against 201 s) |
 
 DOCX, XLSX, XLS, ODS and PPTX → PDF need neither Microsoft Office nor LibreOffice: they are read in-process, written as HWPX
 and rendered by rhwp. Anything the built-in readers understand (including PDF) is written as DOCX by the DOCX writer.
@@ -92,6 +93,15 @@ and Hancom Office are never used, even when installed. Running from source, the 
 The installer contains only the small engines. On first start Filee asks which of the large ones to download;
 they can be installed or removed later in Settings → *Engines*. A conversion that needs a missing engine shows
 "Needs LibreOffice …" on its donut slice.
+
+MinerU is not among them: it is a Python + model package (~4 GB on disk for 4.x, ~10 GB for 1.x) with its own
+installer, so Filee never downloads it. Either line works: 4.x (`mineru-kit`, Python 3.11–3.14) is preferred when
+both are installed. Settings → *Engines* explains how to install it and where to point Filee at it ("Use my copy…",
+usually the `.venv/Scripts` folder of the install, or that folder on the `PATH`). While it is installed it takes
+over PDF → Markdown; without it the built-in PDF text engine writes the Markdown (text layer only — Tesseract can
+OCR a scan into Markdown too, but without layout analysis, formulas or tables). `FILEE_MINERU=0` switches the
+engine off without uninstalling it; `FILEE_MINERU_TIER` picks 4.x's quality dial (`flash`, `basic`, `standard` —
+the default — or `advanced`).
 
 - Downloads are pinned in `src/Filee.Engines/Infrastructure/engines.json` (URL, SHA-256, size). The same file is
   read by `build/fetch-engines.ps1`, so development and the app always use the same versions. A macOS download can

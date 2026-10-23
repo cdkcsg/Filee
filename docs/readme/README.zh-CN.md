@@ -163,7 +163,7 @@ Set-ProcessMitigation -Name filee-cli.exe -Disable UserShadowStack
 |---|---|
 | **图片** JPG、PNG、WEBP、AVIF、TIFF、BMP、GIF、APNG、ICO、ICNS、JPEG XL、JPEG 2000、PSD/PSB、TGA、PPM、HEIC、QOI、DDS、PCX、MNG、CUR 等，<br>GIMP XCF、相机 RAW（CR2、CR3、NEF、ARW、DNG 等）、DICOM、OpenEXR、HDR、FITS、JPEG XR（Windows）、iPhone 实况照片（LIVP）仅读取 | 上述格式互转（HEIC⁵）、PDF、SVG（描摹）、缩放、灰度，<br>实况/动态照片（iPhone、安卓）→ 其中的视频（MP4、MOV⁵），以及视频 → 实况照片（iPhone）或动态照片（安卓）⁵（实验功能） |
 | **矢量图** SVG、SVGZ、EMF、WMF、AI<br>EPS、PS¹<br>CDR、VSD、CGM、ODG、FODG² | PDF（矢量）、PNG 等图片、<br>SVG ↔ SVGZ、SVG → DXF/DWG、PDF → EPS/PS¹、SVG → EMF、WMF、ODG² |
-| **PDF** | DOCX、HWPX、TXT、PNG、JPG、TIFF、CBZ、PPTX（每页一张图片）、SVG²，<br>合并（先选择顺序）、拆分、页码范围、压缩（更小的 PDF） |
+| **PDF** | DOCX、HWPX、TXT、**Markdown**（内置；公式转 LaTeX、表格与扫描件需 MinerU⁶）、PNG、JPG、TIFF、CBZ、PPTX（每页一张图片）、SVG²，<br>合并（先选择顺序）、拆分、页码范围、压缩（更小的 PDF） |
 | **文档** DOCX、DOCM、DOTX、EML、Outlook MSG，<br>OFD（电子发票、公文）仅读取<br>DOC、ODT、FODT、OTT、RTF、WPS、WPD、Pages、ClarisWorks、MacWrite、T602 等² | PDF、DOCX、HWPX、EPUB、TXT、HTML、<br>MSG → EML<br>ODT、FODT、OTT² |
 | **表格** XLSX、XLSM、XLS、XLT、ODS、CSV、TSV<br>OTS、FODS、Numbers、ET² | PDF、XLSX、ODS、CSV、TSV、JSON、HWPX、HTML<br>XLT、OTS² |
 | **演示文稿** PPTX、PPTM、POTX、POTM、PPSX<br>PPT、ODP、OTP、FODP、Keynote² | PDF、PNG、JPG、DOCX、HWPX<br>OTP² |
@@ -181,7 +181,7 @@ Set-ProcessMitigation -Name filee-cli.exe -Disable UserShadowStack
 | **地理信息（矢量）** Shapefile、GeoJSON、KML、KMZ、GPX<br>带坐标的 CSV，<br>Garmin FIT 仅读取 | 互相转换、CSV / XLSX / JSON，<br>投影坐标系（UTM、Web 墨卡托、兰伯特、阿尔伯斯）会转换为 WGS 84 经纬度 |
 
 未标注的格式装好即用，无需 Office、韩文办公软件或 LibreOffice。
-标注的格式需要可选引擎，只在需要时下载，分别是 ¹ Ghostscript、² LibreOffice、³ Pandoc、⁴ calibre、⁵ FFmpeg（[详情](../../docs/ENGINES.md)）。
+标注的格式需要可选引擎，只在需要时下载，分别是 ¹ Ghostscript、² LibreOffice、³ Pandoc、⁴ calibre、⁵ FFmpeg（[详情](../../docs/ENGINES.md)）。⁶ MinerU 是例外：Filee 从不代为下载——请自行安装（4.x 约 4 GB，比 1.x 更快、表格更准），然后在设置 → *引擎* 里选择它的文件夹。
 
 ## 命令行
 
