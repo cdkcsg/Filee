@@ -80,6 +80,7 @@ public static class EngineRegistry
         new VisionConverter(), // before Tesseract: a Mac's OCR step (Tesseract reads the languages Vision doesn't)
         new TesseractConverter(),
         new CalibreConverter(),
+        new MineruConverter(),
         new LibreOfficeConverter(env, loggers?.CreateLogger<LibreOfficeConverter>()),
     ];
 

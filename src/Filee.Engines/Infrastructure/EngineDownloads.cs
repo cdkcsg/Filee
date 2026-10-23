@@ -58,6 +58,10 @@ public static class EngineDownloads
         .. (OperatingSystem.IsWindows() ? [new EnginePackage("whisper", ["whisper", "whisper-model"], 156_880_105, ["whisper"])] : Array.Empty<EnginePackage>()),
         // The Metadata tool reads with it and its conversions write with it (Filee.Engines.Metadata).
         new("exiftool", ["exiftool"], 30_000_000, ["exiftool"]),
+        // MinerU is not downloaded by Filee — it is a Python + model package (~4 GB for 4.x, ~10 GB for 1.x) with its
+        // own install. It is listed so the user can point Filee at their install ("Use my copy…"); CanDownload is
+        // false because "mineru" has no entry in engines.json, so the card shows guidance instead of a download button.
+        new("mineru", ["mineru"], 0, ["mineru"]),
     ];
 
     /// <summary>Total download size of a package in bytes.</summary>

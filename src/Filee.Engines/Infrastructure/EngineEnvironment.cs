@@ -85,6 +85,7 @@ public sealed class EngineEnvironment(string dataDirectory)
         ["ghostscript"] = [windows ? "gswin64c.exe" : "gs"],
         ["ffmpeg"] = windows ? ["ffmpeg.exe", "ffprobe.exe"] : ["ffmpeg", "ffprobe"],
         ["calibre"] = [windows ? "ebook-convert.exe" : "ebook-convert"],
+        ["mineru"] = [windows ? "magic-pdf.exe" : "magic-pdf"],
         ["rhwp"] = [windows ? "rhwp.exe" : "rhwp"],
         ["7zip"] = [windows ? "7z.exe" : "7zz"],
         ["tesseract"] = [windows ? "tesseract.exe" : "tesseract"],
@@ -124,6 +125,9 @@ public sealed class EngineEnvironment(string dataDirectory)
             return null;
         var app = id == "libreoffice" ? "LibreOffice.app" : id == "calibre" ? "calibre.app" : null;
         var candidates = new List<string> { start, Path.Combine(start, "bin"), Path.Combine(start, "program"), Path.Combine(start, "Contents", "MacOS") };
+        // MinerU usually lives in a personal virtual environment: <install>\.venv\Scripts (Windows) or .venv/bin.
+        if (id == "mineru")
+            candidates.Add(Path.Combine(start, ".venv", windows ? "Scripts" : "bin"));
         if (app is not null)
             candidates.Add(Path.Combine(start, app, "Contents", "MacOS"));
         foreach (var folder in candidates)
