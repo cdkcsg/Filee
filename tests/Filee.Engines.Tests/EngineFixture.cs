@@ -3,6 +3,7 @@ using Filee.Core.Presets;
 using Filee.Core.Settings;
 using Filee.Engines;
 using Filee.Engines.Infrastructure;
+using Filee.Engines.Pdf;
 using ImageMagick;
 
 namespace Filee.Engines.Tests;
@@ -14,7 +15,11 @@ public sealed class EngineFixture : IDisposable
     {
         Directory.CreateDirectory(Root);
         var env = new EngineEnvironment(Path.Combine(Root, "data"));
-        Converters = EngineRegistry.CreateAll(env);
+        // MinerU is left out of the shared fixture: it is a machine-local ML install (~10 GB), and on a computer
+        // that has one its cheaper PDF → Markdown edge would silently reroute every test that exercises the
+        // built-in PDF text engine (pdf-text) to MinerU. MineruEngineTests covers it on its own, with a fake
+        // install instead of a real one.
+        Converters = [.. EngineRegistry.CreateAll(env).Where(c => c is not MineruConverter)];
         Catalog = new ConverterCatalog(Converters) { Priority = new AppSettings().EnginePriority };
     }
 
