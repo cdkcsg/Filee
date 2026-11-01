@@ -1223,7 +1223,7 @@
   "engines.guidance.linux.tesseract": "इसे अपने पैकेज मैनेजर से इंस्टॉल करें (Ubuntu/Debian: sudo apt install tesseract-ocr), फिर “फिर से जाँचें” चुनें।",
   "engines.guidance.linux.exiftool": "अपने पैकेज मैनेजर से इंस्टॉल करें (Ubuntu/Debian: sudo apt install libimage-exiftool-perl), फिर «फिर से जाँचें» चुनें।",
   "engines.guidance.windows": "इस PC के लिए Filee के पास {0} का डाउनलोड नहीं है।\n“मेरी कॉपी इस्तेमाल करें…” चुनें और इंस्टॉल की गई कॉपी चुनें।",
-  "engines.guidance.windows.mineru": "खुद MinerU इंस्टॉल करें (Python 3.10, फिर pip install “magic-pdf[full]” चलाएँ और उसके मॉडल डाउनलोड करें — लगभग 10 GB)। फिर “मेरी कॉपी इस्तेमाल करें…” चुनें और magic-pdf.exe वाला फ़ोल्डर चुनें (आमतौर पर आपकी MinerU इंस्टॉलेशन का .venv/Scripts फ़ोल्डर), या उस फ़ोल्डर को PATH में जोड़ें।",
+  "engines.guidance.windows.mineru": "खुद MinerU इंस्टॉल करें (Python 3.10, फिर pip install “magic-pdf[full]” चलाएँ और उसके मॉडल डाउनलोड करें — लगभग 10 GB)। फिर “मेरी कॉपी इस्तेमाल करें…” चुनें और mineru-kit.exe / magic-pdf.exe वाला फ़ोल्डर चुनें (आमतौर पर आपकी MinerU इंस्टॉलेशन का .venv/Scripts फ़ोल्डर), या उस फ़ोल्डर को PATH में जोड़ें।",
   "engines.use_own_app_folder": "वह फ़ोल्डर चुनें जिसमें {0}.app है",
   "engines.progress_detail": "{1} में से {0} · {2}/s · {3}",
   "engines.eta.estimating": "बचा हुआ समय आँका जा रहा है…",

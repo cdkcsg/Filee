@@ -85,7 +85,8 @@ public sealed class EngineEnvironment(string dataDirectory)
         ["ghostscript"] = [windows ? "gswin64c.exe" : "gs"],
         ["ffmpeg"] = windows ? ["ffmpeg.exe", "ffprobe.exe"] : ["ffmpeg", "ffprobe"],
         ["calibre"] = [windows ? "ebook-convert.exe" : "ebook-convert"],
-        ["mineru"] = [windows ? "magic-pdf.exe" : "magic-pdf"],
+        // MinerU renamed its command line: 1.x ships magic-pdf, 4.x ships mineru-kit. Either one identifies a copy.
+        ["mineru"] = windows ? ["mineru-kit.exe", "magic-pdf.exe"] : ["mineru-kit", "magic-pdf"],
         ["rhwp"] = [windows ? "rhwp.exe" : "rhwp"],
         ["7zip"] = [windows ? "7z.exe" : "7zz"],
         ["tesseract"] = [windows ? "tesseract.exe" : "tesseract"],
@@ -131,8 +132,14 @@ public sealed class EngineEnvironment(string dataDirectory)
         if (app is not null)
             candidates.Add(Path.Combine(start, app, "Contents", "MacOS"));
         foreach (var folder in candidates)
-            if (programs.All(p => File.Exists(Path.Combine(folder, p))))
+        {
+            // MinerU has one program or the other, not both: 1.x magic-pdf, 4.x mineru-kit.
+            var complete = id == "mineru"
+                ? programs.Any(p => File.Exists(Path.Combine(folder, p)))
+                : programs.All(p => File.Exists(Path.Combine(folder, p)));
+            if (complete)
                 return folder;
+        }
         return null;
     }
 

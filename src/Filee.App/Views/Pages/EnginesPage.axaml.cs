@@ -436,7 +436,7 @@ public partial class EnginesPage : UserControl
             {
                 Title = loc.Format("engines.use_own_title", package.Name),
                 AllowMultiple = false,
-                FileTypeFilter = [new FilePickerFileType(programs[0]) { Patterns = [programs[0]] }, FilePickerFileTypes.All],
+                FileTypeFilter = [new FilePickerFileType(programs[0]) { Patterns = [.. programs] }, FilePickerFileTypes.All],
             });
             path = files.FirstOrDefault()?.TryGetLocalPath();
         }

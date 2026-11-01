@@ -1240,7 +1240,7 @@
   "engines.guidance.linux.tesseract": "Установите менеджером пакетов (Ubuntu/Debian: sudo apt install tesseract-ocr), затем выберите «Проверить снова».",
   "engines.guidance.linux.exiftool": "Установите через менеджер пакетов (Ubuntu/Debian: sudo apt install libimage-exiftool-perl) и выберите «Проверить снова».",
   "engines.guidance.windows": "Filee не может скачать {0} для этого компьютера.\nВыберите «Использовать свою копию…» и укажите установленную копию.",
-  "engines.guidance.windows.mineru": "Установите MinerU сами (Python 3.10, затем pip install „magic-pdf[full]“ и скачайте его модели — около 10 ГБ). Затем выберите «Использовать свою копию…» и укажите папку с magic-pdf.exe (обычно .venv/Scripts в вашей установке MinerU) или добавьте эту папку в PATH.",
+  "engines.guidance.windows.mineru": "Установите MinerU сами (Python 3.10, затем pip install „magic-pdf[full]“ и скачайте его модели — около 10 ГБ). Затем выберите «Использовать свою копию…» и укажите папку с mineru-kit.exe / magic-pdf.exe (обычно .venv/Scripts в вашей установке MinerU) или добавьте эту папку в PATH.",
   "engines.use_own_app_folder": "Выберите папку, в которой лежит {0}.app",
   "engines.progress_detail": "{0} из {1} · {2}/с · {3}",
   "engines.eta.estimating": "оцениваем, сколько осталось…",

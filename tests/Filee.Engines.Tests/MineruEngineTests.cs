@@ -28,6 +28,7 @@ public class MineruEngineTests : IDisposable
         EngineEnvironment.OwnCopies = _ownCopies;
         Environment.SetEnvironmentVariable("FILEE_MINERU", null);
         Environment.SetEnvironmentVariable("FILEE_MINERU_EXE", null);
+        Environment.SetEnvironmentVariable("FILEE_MINERU_TIER", null);
         try { Directory.Delete(_root, true); } catch (IOException) { }
     }
 
@@ -94,5 +95,83 @@ public class MineruEngineTests : IDisposable
         Environment.SetEnvironmentVariable("FILEE_MINERU_EXE", exe);
 
         Assert.Equal(exe, MineruConverter.Locate());
+    }
+
+    [Fact]
+    public void MinerU_4_is_found_by_its_own_program_name_and_says_so()
+    {
+        var scripts = Path.Combine(_root, "mineru4", ".venv", "Scripts");
+        Directory.CreateDirectory(scripts);
+        File.WriteAllText(Path.Combine(scripts, "mineru-kit.exe"), "");
+
+        EngineEnvironment.OwnCopies = new Dictionary<string, string> { ["mineru"] = Path.Combine(_root, "mineru4") };
+
+        Assert.Equal(Path.Combine(scripts, "mineru-kit.exe"), MineruConverter.Locate(out var flavor));
+        Assert.Equal(MineruFlavor.Kit, flavor);
+
+        var mineru = Assert.Single(EngineRegistry.CreateAll(new EngineEnvironment(_root)), c => c.Id == "mineru");
+        var status = mineru.GetStatus();
+        Assert.True(status.IsAvailable);
+        // The card says which command line the found copy speaks, so a user can tell 1.x from 4.x.
+        Assert.Equal("MinerU 4 (mineru-kit)", status.Version);
+    }
+
+    [Fact]
+    public void With_both_installed_MinerU_4_is_the_one_that_runs()
+    {
+        var scripts = Path.Combine(_root, "both", ".venv", "Scripts");
+        Directory.CreateDirectory(scripts);
+        File.WriteAllText(Path.Combine(scripts, "magic-pdf.exe"), "");
+        File.WriteAllText(Path.Combine(scripts, "mineru-kit.exe"), "");
+
+        EngineEnvironment.OwnCopies = new Dictionary<string, string> { ["mineru"] = Path.Combine(_root, "both") };
+
+        Assert.Equal(Path.Combine(scripts, "mineru-kit.exe"), MineruConverter.Locate());
+    }
+
+    [Theory]
+    [InlineData("flash")]
+    [InlineData("basic")]
+    [InlineData("STANDARD")]
+    [InlineData("advanced")]
+    public void The_quality_dial_is_taken_from_the_environment(string tier)
+    {
+        Environment.SetEnvironmentVariable("FILEE_MINERU_TIER", tier);
+
+        Assert.Equal(tier.ToLowerInvariant(), MineruConverter.Tier());
+    }
+
+    [Fact]
+    public void An_unknown_quality_dial_falls_back_to_standard()
+    {
+        Environment.SetEnvironmentVariable("FILEE_MINERU_TIER", "ultra");
+
+        Assert.Equal("standard", MineruConverter.Tier());
+    }
+
+    [Fact]
+    public void Inlined_pictures_become_files_next_to_the_markdown()
+    {
+        var output = Path.Combine(_root, "out", "paper.md");
+        Directory.CreateDirectory(Path.GetDirectoryName(output)!);
+        var picture = Convert.ToBase64String([0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x10]);
+        var markdown = $"# Title\n\n![](data:image/jpeg;base64,{picture})\n\ntext\n";
+
+        var text = MineruConverter.ExtractInlineImages(markdown, output);
+
+        Assert.Equal("# Title\n\n![](paper_images/image-1.jpg)\n\ntext\n", text);
+        var written = Path.Combine(Path.GetDirectoryName(output)!, "paper_images", "image-1.jpg");
+        Assert.True(File.Exists(written));
+        Assert.Equal([0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x10], File.ReadAllBytes(written));
+    }
+
+    [Fact]
+    public void Markdown_without_inlined_pictures_is_left_alone()
+    {
+        var output = Path.Combine(_root, "plain.md");
+        const string markdown = "# Title\n\n![](images/1.jpg)\n";
+
+        Assert.Equal(markdown, MineruConverter.ExtractInlineImages(markdown, output));
+        Assert.False(Directory.Exists(Path.Combine(_root, "plain_images")));
     }
 }

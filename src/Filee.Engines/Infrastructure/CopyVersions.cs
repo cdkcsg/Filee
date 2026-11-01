@@ -30,7 +30,10 @@ public static partial class CopyVersions
         var program = id switch
         {
             "libreoffice" when OperatingSystem.IsWindows() => Path.Combine(folder, "version.ini"),
-            _ when EngineEnvironment.OwnCopyPrograms.TryGetValue(id, out var programs) => Path.Combine(folder, programs[0]),
+            // A package may ship more than one valid program name (MinerU 1.x magic-pdf, 4.x mineru-kit): use the one
+            // that is actually there.
+            _ when EngineEnvironment.OwnCopyPrograms.TryGetValue(id, out var programs) =>
+                EngineEnvironment.FirstExisting(programs.Select(p => Path.Combine(folder, p)).ToArray()),
             _ => null,
         };
         if (program is null || !File.Exists(program))

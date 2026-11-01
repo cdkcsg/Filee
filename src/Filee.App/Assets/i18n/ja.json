@@ -1223,7 +1223,7 @@
   "engines.guidance.linux.tesseract": "パッケージマネージャーでインストール（Ubuntu/Debian：sudo apt install tesseract-ocr）してから、「再確認」を選んでください。",
   "engines.guidance.linux.exiftool": "パッケージマネージャーでインストール（Ubuntu/Debian: sudo apt install libimage-exiftool-perl）してから「再確認」を選んでください。",
   "engines.guidance.windows": "このPC向けの{0}はFileeからダウンロードできません。\n「手元のプログラムを使う…」を選び、インストール済みのものを指定してください。",
-  "engines.guidance.windows.mineru": "ご自分で MinerU をインストールしてください（Python 3.10、次に pip install 『magic-pdf[full]』 を実行してモデルをダウンロード——約 10 GB）。次に「手元のプログラムを使う…」を選び、magic-pdf.exe を含むフォルダー（通常は MinerU インストール先の .venv/Scripts）を指定するか、そのフォルダーを PATH に追加してください。",
+  "engines.guidance.windows.mineru": "ご自分で MinerU をインストールしてください（Python 3.10、次に pip install 『magic-pdf[full]』 を実行してモデルをダウンロード——約 10 GB）。次に「手元のプログラムを使う…」を選び、mineru-kit.exe / magic-pdf.exe を含むフォルダー（通常は MinerU インストール先の .venv/Scripts）を指定するか、そのフォルダーを PATH に追加してください。",
   "engines.use_own_app_folder": "{0}.appを含むフォルダーを選択してください",
   "engines.progress_detail": "{0}/{1} · {2}/秒 · {3}",
   "engines.eta.estimating": "残り時間を計算中…",

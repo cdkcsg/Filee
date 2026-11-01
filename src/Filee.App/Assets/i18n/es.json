@@ -1223,7 +1223,7 @@
   "engines.guidance.linux.tesseract": "Instálalo con tu gestor de paquetes (Ubuntu/Debian: sudo apt install tesseract-ocr) y luego elige «Comprobar otra vez».",
   "engines.guidance.linux.exiftool": "Instálalo con tu gestor de paquetes (Ubuntu/Debian: sudo apt install libimage-exiftool-perl) y elige «Comprobar de nuevo».",
   "engines.guidance.windows": "Filee no tiene una descarga de {0} para este PC.\nElige «Usar mi copia…» y selecciona una copia instalada.",
-  "engines.guidance.windows.mineru": "Instala MinerU tú mismo (Python 3.10, luego pip install „magic-pdf[full]“ y descarga sus modelos — unos 10 GB). Después elige «Usar mi copia…» y selecciona la carpeta que contiene magic-pdf.exe (normalmente la carpeta .venv/Scripts de tu instalación de MinerU), o añade esa carpeta al PATH.",
+  "engines.guidance.windows.mineru": "Instala MinerU tú mismo (Python 3.10, luego pip install „magic-pdf[full]“ y descarga sus modelos — unos 10 GB). Después elige «Usar mi copia…» y selecciona la carpeta que contiene mineru-kit.exe / magic-pdf.exe (normalmente la carpeta .venv/Scripts de tu instalación de MinerU), o añade esa carpeta al PATH.",
   "engines.use_own_app_folder": "Elige la carpeta que contiene {0}.app",
   "engines.progress_detail": "{0} de {1} · {2}/s · {3}",
   "engines.eta.estimating": "calculando el tiempo restante…",
