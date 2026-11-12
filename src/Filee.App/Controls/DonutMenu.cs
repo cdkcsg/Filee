@@ -226,6 +226,12 @@ public sealed partial class DonutMenu : Control
     /// <summary>The hole was clicked.</summary>
     public event EventHandler? CenterInvoked;
 
+    /// <summary>
+    /// A click landed past the ring with no group open (live toolbar): the donut should close, like a click on the
+    /// hole. A first click with a group's ring open only collapses it, so a wide ring isn't lost to a stray click.
+    /// </summary>
+    public event EventHandler? OutsideInvoked;
+
     /// <summary>Edit mode: the user started dragging slice <c>Index</c>.</summary>
     public event EventHandler<(int Index, PointerEventArgs Args)>? SegmentDragStarted;
 
@@ -594,6 +600,9 @@ public sealed partial class DonutMenu : Control
                 break;
             case DonutHitKind.Outside when !IsEditMode && _expanded >= 0:
                 CollapseGroup(); // clicked past the ring
+                break;
+            case DonutHitKind.Outside when !IsEditMode:
+                OutsideInvoked?.Invoke(this, EventArgs.Empty);
                 break;
             case DonutHitKind.SubSegment when !IsEditMode && Items![hit.Index].Children![hit.Sub].IsEnabled:
                 SubSegmentInvoked?.Invoke(this, (hit.Index, hit.Sub));

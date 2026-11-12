@@ -21,6 +21,15 @@ public partial class RadialWindow : Window
         DragDrop.AddDragOverHandler(Root, OnDragOver);
         DragDrop.AddDragLeaveHandler(Root, OnDragLeave);
         DragDrop.AddDropHandler(Root, OnDrop);
+        // The donut's control is drawn where its slices are; clicks in the window's empty corners land here instead.
+        // Closing on them keeps "click anywhere else to dismiss" true for the whole window, corners included.
+        Root.PointerReleased += (_, e) =>
+        {
+            if (e.Handled || e.InitialPressMouseButton != MouseButton.Left || Donut.IsInProgressMode)
+                return;
+            if (Donut.HitTest(e.GetPosition(Donut)).Kind == DonutHitKind.Outside)
+                OutsideClicked?.Invoke();
+        };
         // Halfway through a flip (Tab) the donut shows the other face of the profile.
         Donut.FaceSwapping += (_, _) => (DataContext as RadialViewModel)?.ToggleFace();
     }
@@ -124,6 +133,9 @@ public partial class RadialWindow : Window
     }
 
     public event Action? EscapePressed;
+
+    /// <summary>A click landed on the window but outside the donut ring (the corners the donut's own hit test misses).</summary>
+    public event Action? OutsideClicked;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {

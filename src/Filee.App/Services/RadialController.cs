@@ -322,6 +322,7 @@ public sealed class RadialController(
                 events, hit.Kind, hit.Index, lit, dropped ? "" : ", left without a drop");
         };
         window.EscapePressed += () => Close();
+        window.OutsideClicked += () => Close();
         // The flip key comes from the window while it has the keyboard, else from the hook (WatchFlipKey): followed by
         // the value, which the Activated event may come before.
         window.PropertyChanged += (_, e) =>
@@ -362,6 +363,7 @@ public sealed class RadialController(
         donut.SegmentInvoked += (_, index) => Convert(index, -1, viewModel.Files, TakeWeb());
         donut.SubSegmentInvoked += (_, hit) => Convert(hit.Group, hit.Sub, viewModel.Files, TakeWeb());
         donut.CenterInvoked += (_, _) => Close();
+        donut.OutsideInvoked += (_, _) => Close();
         donut.SegmentContextRequested += async (_, index) => await EditPresetAsync(index);
         donut.SubSegmentContextRequested += async (_, hit) => await EditPresetAsync(hit.Group, hit.Sub);
         donut.ProgressCancelRequested += (_, _) => _progressJob?.CancelCommand.Execute(null);
