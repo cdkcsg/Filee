@@ -174,6 +174,47 @@ public class GestureDetectorTests
     }
 
     [Fact]
+    public void Left_button_hold_without_modifiers_fires_on_still_press_only()
+    {
+        // The "press and hold the left button on a file" gesture: no modifiers, so ordinary clicks and
+        // drags must stay untouched — only a still press past the hold time may open the donut.
+        var detector = Create(new TriggerGesture { Kind = TriggerKind.Hold, Modifiers = ModifierKeys.None, Button = TriggerMouseButton.Left });
+        long token = 0;
+        var held = 0;
+        var dragEnded = 0;
+        detector.HoldTimerRequested += (t, _) => token = t;
+        detector.HoldTriggered += (_, _, _) => held++;
+        detector.DragEnded += (_, _) => dragEnded++;
+
+        // A still press past the hold time fires.
+        detector.MouseDown(TriggerMouseButton.Left, 100, 100, ModifierKeys.None);
+        detector.HoldElapsed(token);
+        Assert.Equal(1, held);
+
+        // A quick click (button up before the timer) fires nothing.
+        detector.MouseUp(TriggerMouseButton.Left, 100, 100);
+        detector.MouseDown(TriggerMouseButton.Left, 100, 100, ModifierKeys.None);
+        detector.MouseUp(TriggerMouseButton.Left, 100, 100);
+        detector.HoldElapsed(token);
+        Assert.Equal(1, held);
+
+        // Moving past the threshold cancels the hold, and a plain file drag stays free.
+        detector.MouseDown(TriggerMouseButton.Left, 100, 100, ModifierKeys.None);
+        detector.MouseMove(160, 100, ModifierKeys.None, TriggerMouseButton.Left);
+        detector.HoldElapsed(token);
+        detector.MouseUp(TriggerMouseButton.Left, 160, 100);
+        Assert.Equal((1, 0), (held, dragEnded));
+
+        // After the hold fired, moving on and releasing neither re-fires nor ends a drag:
+        // the release over Explorer must not close the donut through DragEnded.
+        detector.MouseDown(TriggerMouseButton.Left, 100, 100, ModifierKeys.None);
+        detector.HoldElapsed(token);
+        detector.MouseMove(180, 100, ModifierKeys.None, TriggerMouseButton.Left);
+        detector.MouseUp(TriggerMouseButton.Left, 180, 100);
+        Assert.Equal((2, 0), (held, dragEnded));
+    }
+
+    [Fact]
     public void Drag_and_hold_on_the_same_press_both_wait_for_what_the_pointer_does()
     {
         // #450: with Drag listed first, a Hold on the same button and modifiers was never armed.
