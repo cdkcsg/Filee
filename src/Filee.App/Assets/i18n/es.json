@@ -1211,6 +1211,7 @@
   "engines.package.mineru.description": "Reconoce fórmulas (LaTeX), tablas, el diseño y los escaneos de los PDF y escribe Markdown con ellos. El PDF → Markdown integrado de Filee solo lee la capa de texto — sin fórmulas, tablas ni OCR — así que MinerU se prefiere cuando está instalado. Es una instalación local grande (unos 10 GB, Python + modelos) que Filee no descarga: instala MinerU tú mismo y luego elige «Usar mi copia…».",
   "engines.package.size": "Descargar {0} · {1} en disco",
   "engines.package.system_required": "Usa una copia instalada en este equipo.",
+  "engines.package.required": "Necesario",
   "engines.guidance.macos": "Instala {0} para este Mac y luego elige «Usar mi copia…» y selecciona su programa o su carpeta .app.",
   "engines.guidance.macos.ffmpeg": "Instálalo con Homebrew (brew install ffmpeg) y luego elige «Comprobar otra vez».\nO bien elige «Usar mi copia…» y selecciona su carpeta bin.",
   "engines.guidance.macos.ghostscript": "Instálalo con Homebrew (brew install ghostscript) y luego elige «Comprobar otra vez».\nO bien elige «Usar mi copia…» y selecciona su carpeta bin.",

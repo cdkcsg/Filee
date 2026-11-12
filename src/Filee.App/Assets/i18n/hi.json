@@ -1211,6 +1211,7 @@
   "engines.package.mineru.description": "PDF में सूत्र (LaTeX), तालिकाएँ, लेआउट और स्कैन को पहचानकर Markdown में लिखता है। Filee का बिल्ट-इन PDF → Markdown केवल टेक्स्ट लेयर पढ़ता है — कोई सूत्र, तालिका या OCR नहीं — इसलिए MinerU इंस्टॉल होने पर उसे प्राथमिकता मिलती है। यह एक बड़ी लोकल इंस्टॉलेशन है (लगभग 10 GB, Python + मॉडल) जिसे Filee डाउनलोड नहीं करता: खुद MinerU इंस्टॉल करें, फिर “मेरी कॉपी इस्तेमाल करें…” चुनें।",
   "engines.package.size": "डाउनलोड {0} · डिस्क पर {1}",
   "engines.package.system_required": "इस कंप्यूटर पर इंस्टॉल की गई कॉपी इस्तेमाल करें।",
+  "engines.package.required": "आवश्यक",
   "engines.guidance.macos": "इस Mac के लिए {0} इंस्टॉल करें, फिर “मेरी कॉपी इस्तेमाल करें…” चुनें और उसका प्रोग्राम या .app फ़ोल्डर चुनें।",
   "engines.guidance.macos.ffmpeg": "इसे Homebrew से इंस्टॉल करें (brew install ffmpeg), फिर “फिर से जाँचें” चुनें।\nया “मेरी कॉपी इस्तेमाल करें…” चुनें और उसका bin फ़ोल्डर चुनें।",
   "engines.guidance.macos.ghostscript": "इसे Homebrew से इंस्टॉल करें (brew install ghostscript), फिर “फिर से जाँचें” चुनें।\nया “मेरी कॉपी इस्तेमाल करें…” चुनें और उसका bin फ़ोल्डर चुनें।",

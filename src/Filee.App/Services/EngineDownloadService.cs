@@ -39,6 +39,9 @@ public sealed partial class EnginePackageState : ObservableObject
     public EnginePackage Package { get; }
     public string Name => _loc[$"engines.package.{Package.Id}.name"];
 
+    /// <summary>Ticked and locked in the first-run choice, downloaded at once on first launch (see EngineDownloads).</summary>
+    public bool IsRequired => EngineDownloads.IsRequired(Package);
+
     /// <summary>Whether the package card has a Settings button (LibreOffice: which conversions to PDF it takes over).</summary>
     public bool HasSettings => Package.Id == "libreoffice";
     public string Description => _loc[$"engines.package.{Package.Id}.description"];

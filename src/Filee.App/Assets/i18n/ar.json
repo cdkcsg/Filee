@@ -1211,6 +1211,7 @@
   "engines.package.mineru.description": "يتعرّف على الصيغ الرياضية (LaTeX) والجداول والتخطيط والمستندات الممسوحة في ملفات PDF ويكتبها بصيغة Markdown. أما PDF → Markdown المدمج في Filee فيقرأ طبقة النص فقط — بلا صيغ رياضية أو جداول أو تعرّف ضوئي على الحروف — لذا يُفضَّل MinerU عند تثبيته. إنه تثبيت محلي كبير (نحو 10 غيغابايت، Python مع النماذج) لا تنزّله Filee: ثبّت MinerU بنفسك، ثم اختر «استخدام نسختي…».",
   "engines.package.size": "التنزيل {0} · على القرص {1}",
   "engines.package.system_required": "استخدم نسخة مثبّتة على هذا الحاسوب.",
+  "engines.package.required": "مطلوب",
   "engines.guidance.macos": "ثبّت {0} لهذا الـ Mac، ثم اختر «استخدام نسختي…» وحدّد البرنامج أو مجلد ‎.app الخاص به.",
   "engines.guidance.macos.ffmpeg": "ثبّته باستخدام Homebrew ‏(brew install ffmpeg)، ثم اختر «التحقق مجددًا».\nأو اختر «استخدام نسختي…» وحدّد مجلد bin الخاص به.",
   "engines.guidance.macos.ghostscript": "ثبّته باستخدام Homebrew ‏(brew install ghostscript)، ثم اختر «التحقق مجددًا».\nأو اختر «استخدام نسختي…» وحدّد مجلد bin الخاص به.",

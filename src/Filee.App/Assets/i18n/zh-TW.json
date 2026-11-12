@@ -1228,6 +1228,7 @@
   "engines.package.mineru.description": "辨識 PDF 中的公式（LaTeX）、表格、版面與掃描檔並寫入 Markdown。Filee 內建的 PDF → Markdown 只讀取文字層——不辨識公式、表格，也不做 OCR——安裝 MinerU 後會優先使用它。它是本機安裝（4.x 約 4 GB，1.x 約 10 GB），Filee 不代為下載：請自行安裝 MinerU，然後點「使用我的副本…」。",
   "engines.package.size": "下載 {0} · 佔用 {1}",
   "engines.package.system_required": "請使用此電腦上已安裝的引擎。",
+  "engines.package.required": "必要",
   "engines.guidance.macos": "先在這台 Mac 上安裝 {0}，再點「使用我的程式…」選擇它的程式或 .app 資料夾。",
   "engines.guidance.macos.ffmpeg": "用 Homebrew 安裝（brew install ffmpeg）後點「重新檢查」。\n或點「使用我的程式…」選擇它的 bin 資料夾。",
   "engines.guidance.macos.ghostscript": "用 Homebrew 安裝（brew install ghostscript）後點「重新檢查」。\n或點「使用我的程式…」選擇它的 bin 資料夾。",

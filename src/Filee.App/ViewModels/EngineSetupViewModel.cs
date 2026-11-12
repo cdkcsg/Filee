@@ -18,10 +18,11 @@ public sealed partial class EngineSetupViewModel : ObservableObject
     {
         _downloads = downloads;
         _loc = loc;
-        // Nothing is ticked: the user picks what they need (every engine is a download of its own).
+        // The required ones (exiftool: the Metadata tool is dead without it) start ticked and locked; the user picks
+        // the rest (every engine is a download of its own).
         foreach (var package in Packages)
         {
-            package.Selected = false;
+            package.Selected = package.IsRequired;
             package.PropertyChanged += OnPackageChanged;
         }
     }

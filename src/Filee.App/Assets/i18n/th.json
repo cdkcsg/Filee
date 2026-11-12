@@ -1211,6 +1211,7 @@
   "engines.package.mineru.description": "รู้จับสูตร (LaTeX) ตาราง เลย์เอาต์ และสแกนใน PDF แล้วเขียนเป็น Markdown ตัว PDF → Markdown ที่มีใน Filee อ่านเฉพาะชั้นข้อความ — ไม่มีสูตร ตาราง หรือ OCR — จึงใช้ MinerU ก่อนเมื่อติดตั้งไว้ เป็นการติดตั้งในเครื่อง (ประมาณ 4 GB สำหรับ 4.x, 10 GB สำหรับ 1.x) ที่ Filee ไม่ดาวน์โหลดให้: ติดตั้ง MinerU เอง แล้วเลือก “ใช้สำเนาของฉัน…”",
   "engines.package.size": "ดาวน์โหลด {0} · ขนาดบนดิสก์ {1}",
   "engines.package.system_required": "ใช้โปรแกรมที่ติดตั้งอยู่แล้วในคอมพิวเตอร์เครื่องนี้",
+  "engines.package.required": "จำเป็น",
   "engines.guidance.macos": "ติดตั้ง {0} สำหรับ Mac เครื่องนี้ จากนั้นเลือก “ใช้โปรแกรมในเครื่อง…” แล้วเลือกโปรแกรมหรือโฟลเดอร์ .app",
   "engines.guidance.macos.ffmpeg": "ติดตั้งผ่าน Homebrew (brew install ffmpeg) แล้วเลือก “ตรวจสอบอีกครั้ง”\nหรือเลือก “ใช้โปรแกรมในเครื่อง…” แล้วเลือกโฟลเดอร์ bin",
   "engines.guidance.macos.ghostscript": "ติดตั้งผ่าน Homebrew (brew install ghostscript) แล้วเลือก “ตรวจสอบอีกครั้ง”\nหรือเลือก “ใช้โปรแกรมในเครื่อง…” แล้วเลือกโฟลเดอร์ bin",

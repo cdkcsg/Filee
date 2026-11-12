@@ -106,6 +106,14 @@ public static class EngineDownloads
     public static bool IsSuggested(EnginePackage package) =>
         CanDownload(package) && DownloadSize(package) < SuggestLimit && package.Id is not ("ghostscript" or "tesseract" or "upscayl-bin");
 
+    /// <summary>
+    /// Ticked and locked in the installer and in the first-run choice, and downloaded at once on first launch: Filee
+    /// has a first-party feature that is dead without it, and no other engine qualifies. The Metadata tool shows
+    /// nothing without ExifTool, and its download is small (11 MB); every other engine only degrades to fewer
+    /// conversions, which the engines page offers to fix on demand.
+    /// </summary>
+    public static bool IsRequired(EnginePackage package) => package.Id is "exiftool";
+
     /// <param name="macOSVersion">The running macOS; downloads whose minimumMacOS is newer are left out. Null keeps all.</param>
     public static IReadOnlyDictionary<string, EngineComponent> ComponentsForRuntime(string runtimeIdentifier, Version? macOSVersion = null)
     {

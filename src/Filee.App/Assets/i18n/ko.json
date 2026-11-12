@@ -1228,6 +1228,7 @@
   "engines.package.mineru.description": "PDF의 수식(LaTeX), 표, 레이아웃, 스캔을 인식해 Markdown으로 써요. Filee 내장 PDF → Markdown은 텍스트 레이어만 읽어요 — 수식·표·OCR은 안 돼요 — 설치하면 MinerU가 우선이에요. 큰 로컬 설치(약 10GB, Python + 모델)라 Filee가 받아주지 않으니, 직접 설치한 뒤 “내 프로그램 쓰기…”를 눌러 주세요.",
   "engines.package.size": "다운로드 {0} · 설치 후 {1}",
   "engines.package.system_required": "이 컴퓨터에 설치된 엔진을 연결해 주세요.",
+  "engines.package.required": "필수",
   "engines.guidance.macos": "이 Mac에 {0}을(를) 설치한 뒤 “내 프로그램 쓰기…”로 프로그램이나 .app 폴더를 선택해 주세요.",
   "engines.guidance.macos.ffmpeg": "Homebrew로 설치(brew install ffmpeg)한 뒤 “다시 확인”을 누르세요.\n또는 “내 프로그램 쓰기…”로 bin 폴더를 고르세요.",
   "engines.guidance.macos.ghostscript": "Homebrew로 설치(brew install ghostscript)한 뒤 “다시 확인”을 누르세요.\n또는 “내 프로그램 쓰기…”로 bin 폴더를 고르세요.",

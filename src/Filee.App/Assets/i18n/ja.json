@@ -1211,6 +1211,7 @@
   "engines.package.mineru.description": "PDF の数式（LaTeX）、表、版面、スキャンを認識して Markdown に書き出します。Filee 内蔵の PDF → Markdown は文字層だけを読み取ります——数式、表、OCR には対応していません——そのため MinerU がインストールされている場合はこちらが優先されます。大きなローカルインストール（約 10 GB、Python + モデル）となり、Filee はダウンロードしません: ご自分で MinerU をインストールし、「手元のプログラムを使う…」を選んでください。",
   "engines.package.size": "ダウンロード：{0} · ディスク使用量：{1}",
   "engines.package.system_required": "このコンピューターにインストールされているものを使ってください。",
+  "engines.package.required": "必須",
   "engines.guidance.macos": "このMacに{0}をインストールし、「手元のプログラムを使う…」を選んで、プログラムまたは.appフォルダーを指定してください。",
   "engines.guidance.macos.ffmpeg": "Homebrewでffmpegをインストール（brew install ffmpeg）してから、「再確認」を選んでください。\nまたは「手元のプログラムを使う…」を選び、binフォルダーを指定してください。",
   "engines.guidance.macos.ghostscript": "Homebrewでghostscriptをインストール（brew install ghostscript）してから、「再確認」を選んでください。\nまたは「手元のプログラムを使う…」を選び、binフォルダーを指定してください。",

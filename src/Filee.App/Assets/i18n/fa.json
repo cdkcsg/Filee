@@ -1210,6 +1210,7 @@
   "engines.package.mineru.description": "فرمول‌ها (LaTeX)، جدول‌ها، چیدمان و اسکن‌ها را در PDFها می‌شناسد و آن‌ها را با هم در Markdown می‌نویسد. PDF → Markdown داخلی Filee فقط لایه متن را می‌خواند — بدون فرمول، جدول یا OCR — بنابراین وقتی MinerU نصب باشد مقدم است. این یک نصب محلی است (حدود 4 گیگابایت با MinerU 4.x و 10 گیگابایت با 1.x) که Filee آن را دانلود نمی‌کند: خودتان MinerU را نصب کنید، سپس «استفاده از نسخه من…» را انتخاب کنید.",
   "engines.package.size": "دانلود {0} · {1} روی دیسک",
   "engines.package.system_required": "از نسخه نصب‌شده روی این رایانه استفاده کنید.",
+  "engines.package.required": "ضروری",
   "engines.guidance.macos": "{0} را برای این مک نصب کنید، سپس «استفاده از نسخه من…» را انتخاب کرده و برنامه یا پوشه .app آن را برگزینید.",
   "engines.guidance.macos.ffmpeg": "آن را با Homebrew نصب کنید (brew install ffmpeg)، سپس «بررسی مجدد» را انتخاب نمایید.\nیا «استفاده از نسخه من…» را انتخاب کرده و پوشه bin آن را برگزینید.",
   "engines.guidance.macos.ghostscript": "آن را با Homebrew نصب کنید (brew install ghostscript)، سپس «بررسی مجدد» را انتخاب نمایید.\nیا «استفاده از نسخه من…» را انتخاب کرده و پوشه bin آن را برگزینید.",

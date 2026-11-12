@@ -44,9 +44,11 @@ public sealed partial class EngineItem(EngineOffer offer, bool installed) : Obse
     public EngineOffer Offer { get; } = offer;
     public string Id => Offer.Id;
     public bool Installed { get; } = installed;
-    public bool CanSelect => !Installed;
 
-    [ObservableProperty] private bool _selected = !installed && offer.Suggested;
+    /// <summary>A required package is ticked and locked: Filee cannot work without it.</summary>
+    public bool CanSelect => !Installed && !Offer.Required;
+
+    [ObservableProperty] private bool _selected = !installed && (offer.Required || offer.Suggested);
     [ObservableProperty] private string _name = offer.Id;
     [ObservableProperty] private string _detail = "";
 }

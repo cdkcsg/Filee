@@ -1228,6 +1228,7 @@
   "engines.package.mineru.description": "Nhận diện công thức (LaTeX), bảng biểu, bố cục và bản quét trong PDF rồi ghi thành Markdown. PDF → Markdown tích hợp sẵn của Filee chỉ đọc lớp văn bản — không có công thức, bảng hay OCR — nên MinerU được ưu tiên khi đã cài. Đây là bản cài cục bộ (khoảng 4 GB với MinerU 4.x, 10 GB với 1.x) mà Filee không tải về: hãy tự cài MinerU, rồi chọn “Dùng bản của tôi…”.",
   "engines.package.size": "Tải xuống {0} · {1} trên đĩa",
   "engines.package.system_required": "Dùng bản đã cài trên máy tính này.",
+  "engines.package.required": "Bắt buộc",
   "engines.guidance.macos": "Cài {0} cho máy Mac này, rồi chọn “Dùng bản của tôi…” và chọn chương trình hoặc thư mục .app của nó.",
   "engines.guidance.macos.ffmpeg": "Cài bằng Homebrew (brew install ffmpeg), rồi chọn “Kiểm tra lại”.\nHoặc chọn “Dùng bản của tôi…” và chọn thư mục bin của nó.",
   "engines.guidance.macos.ghostscript": "Cài bằng Homebrew (brew install ghostscript), rồi chọn “Kiểm tra lại”.\nHoặc chọn “Dùng bản của tôi…” và chọn thư mục bin của nó.",

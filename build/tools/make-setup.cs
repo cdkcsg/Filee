@@ -38,7 +38,8 @@ var engines = EngineDownloads.Packages
         p.Components.Where(c => EngineDownloads.Components[c].Kind != "oxt").ToList(),
         EngineDownloads.DownloadSize(p),
         p.InstalledSize,
-        EngineDownloads.IsSuggested(p)))
+        EngineDownloads.IsSuggested(p),
+        EngineDownloads.IsRequired(p)))
     .ToList();
 
 var watch = Stopwatch.StartNew();

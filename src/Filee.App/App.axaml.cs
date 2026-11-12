@@ -393,14 +393,20 @@ public partial class App : Application
 
         if (options.InstallEngines is { } engines)
         {
-            // Picked on the installer's engine page: download them now. Picking none answers the first-run question.
+            // Picked on the installer's engine page: download them now. Picking none answers the first-run question —
+            // but the required packages still download (they are locked in the installer, so picking none means an
+            // older installer or a silent one).
             if (engines.Count > 0)
                 AppHost.Get<WindowService>().ShowEngineSetup(engines);
+            else
+                StartRequiredEngines();
         }
         else if (!store.Settings.FirstRunCompleted)
         {
             // The installer only contains the small engines: offer the large ones on first run (portable zip, or an
-            // installation that skipped the engine page).
+            // installation that skipped the engine page). The required ones download at once; the window offers the
+            // rest (its checkboxes lock per package while a download runs).
+            StartRequiredEngines();
             if (AppHost.Get<EngineDownloadService>().Packages.Any(p => !p.IsInstalled))
                 AppHost.Get<WindowService>().ShowEngineSetup();
         }
@@ -409,6 +415,17 @@ public partial class App : Application
             store.Settings.FirstRunCompleted = true;
             store.SaveSettings();
         }
+    }
+
+    /// <summary>
+    /// Starts the required engine packages at once (exiftool: the Metadata tool is dead without it). The service
+    /// queues them one at a time; a failure stays visible on the engines page, where the package can be retried.
+    /// </summary>
+    private static void StartRequiredEngines()
+    {
+        var downloads = AppHost.Get<EngineDownloadService>();
+        foreach (var required in downloads.Packages.Where(p => p.IsRequired && p.CanInstall))
+            _ = downloads.InstallAsync(required);
     }
 
     /// <summary>

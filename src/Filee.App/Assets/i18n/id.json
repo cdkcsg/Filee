@@ -1211,6 +1211,7 @@
   "engines.package.mineru.description": "Mengenali rumus (LaTeX), tabel, tata letak, dan pindaian dalam PDF serta menulisnya sebagai Markdown. PDF → Markdown bawaan Filee hanya membaca lapisan teks — tanpa rumus, tabel, atau OCR — jadi MinerU lebih diutamakan bila sudah terpasang. Ini pemasangan lokal (sekitar 4 GB dengan MinerU 4.x, 10 GB dengan 1.x) yang tidak diunduh Filee: pasang MinerU sendiri, lalu pilih “Gunakan salinan saya…”.",
   "engines.package.size": "Unduhan {0} · {1} di disk",
   "engines.package.system_required": "Gunakan salinan yang terpasang di komputer ini.",
+  "engines.package.required": "Wajib",
   "engines.guidance.macos": "Pasang {0} untuk Mac ini, lalu pilih “Gunakan salinan saya…” dan pilih folder program atau folder .app miliknya.",
   "engines.guidance.macos.ffmpeg": "Pasang menggunakan Homebrew (brew install ffmpeg), lalu pilih “Periksa lagi”.\nAtau pilih “Gunakan salinan saya…” dan tentukan folder bin miliknya.",
   "engines.guidance.macos.ghostscript": "Pasang menggunakan Homebrew (brew install ghostscript), lalu pilih “Periksa lagi”.\nAtau pilih “Gunakan salinan saya…” dan tentukan folder bin miliknya.",

@@ -1228,6 +1228,7 @@
   "engines.package.mineru.description": "Rozpoznaje wzory (LaTeX), tabele, układ i skany w plikach PDF i zapisuje je w formacie Markdown. Wbudowana funkcja Filee PDF → Markdown odczytuje tylko warstwę tekstową — bez wzorów, tabel i OCR — więc po zainstalowaniu preferowany jest MinerU. To duża instalacja lokalna (ok. 10 GB, Python + modele), której Filee nie pobiera: zainstaluj MinerU samodzielnie, a potem wybierz „Użyj mojej kopii…”.",
   "engines.package.size": "Pobieranie {0} · {1} na dysku",
   "engines.package.system_required": "Użyj kopii zainstalowanej na tym komputerze.",
+  "engines.package.required": "Wymagane",
   "engines.guidance.macos": "Zainstaluj {0} dla tego Maca, potem wybierz „Użyj mojej kopii…” i wskaż jego program lub folder .app.",
   "engines.guidance.macos.ffmpeg": "Zainstaluj przez Homebrew (brew install ffmpeg), potem wybierz „Sprawdź ponownie”.\nAlbo wybierz „Użyj mojej kopii…” i wskaż folder bin.",
   "engines.guidance.macos.ghostscript": "Zainstaluj przez Homebrew (brew install ghostscript), potem wybierz „Sprawdź ponownie”.\nAlbo wybierz „Użyj mojej kopii…” i wskaż folder bin.",

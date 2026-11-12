@@ -16,7 +16,8 @@ public sealed record PayloadFile(string Path, long Size, string Sha256, int Segm
 
 /// <summary>An engine package of Settings → Engines, as Setup offers it on a fresh install.</summary>
 /// <param name="MarkerFolders">Folders under %LocalAppData%\Filee\engines that are all marked when it is installed.</param>
-public sealed record EngineOffer(string Id, IReadOnlyList<string> MarkerFolders, long DownloadSize, long InstalledSize, bool Suggested);
+/// <param name="Required">Ticked and locked in the engine page: Filee cannot work without it.</param>
+public sealed record EngineOffer(string Id, IReadOnlyList<string> MarkerFolders, long DownloadSize, long InstalledSize, bool Suggested, bool Required = false);
 
 /// <summary>
 /// Where the Setup program's own Authenticode signature (its certificate table) sits: the last bytes of the program,
@@ -78,6 +79,7 @@ public sealed record PayloadManifest(
                 writer.WriteNumber("downloadSize", engine.DownloadSize);
                 writer.WriteNumber("installedSize", engine.InstalledSize);
                 writer.WriteBoolean("suggested", engine.Suggested);
+                writer.WriteBoolean("required", engine.Required);
                 writer.WriteEndObject();
             }
             writer.WriteEndArray();
@@ -133,7 +135,8 @@ public sealed record PayloadManifest(
                     e.GetProperty("markerFolders").EnumerateArray().Select(m => m.GetString()!).ToList(),
                     e.GetProperty("downloadSize").GetInt64(),
                     e.GetProperty("installedSize").GetInt64(),
-                    e.GetProperty("suggested").GetBoolean())).ToList()
+                    e.GetProperty("suggested").GetBoolean(),
+                    e.TryGetProperty("required", out var required) && required.GetBoolean())).ToList()
                 : [];
             ProgramSignature? signature = null;
             if (root.TryGetProperty("programSignature", out var signed))

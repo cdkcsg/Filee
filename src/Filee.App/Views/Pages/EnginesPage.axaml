@@ -71,6 +71,9 @@
                   <StackPanel Spacing="4">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                       <TextBlock FontWeight="SemiBold" Text="{Binding Name}" />
+                      <Border Classes="badge" IsVisible="{Binding IsRequired}">
+                        <TextBlock Classes="caption" Text="{DynamicResource engines.package.required}" />
+                      </Border>
                       <Border Classes="badge">
                         <TextBlock Classes="caption" Text="{Binding StatusText}" />
                       </Border>
