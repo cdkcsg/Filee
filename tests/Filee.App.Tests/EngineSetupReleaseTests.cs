@@ -105,7 +105,8 @@ public class EngineSetupReleaseTests
         {
             window.Show();
             Pump();
-            var package = vm.Packages.First(p => p.CanInstall);
+            // A required package (exiftool) arrives ticked and locked; the test picks a freely choosable one.
+            var package = vm.Packages.First(p => p.CanInstall && !p.IsRequired);
             var check = window.GetVisualDescendants().OfType<CheckBox>()
                 .Single(c => ReferenceEquals(c.DataContext, package));
             var install = window.FindControl<Button>("InstallButton")!;
@@ -114,8 +115,10 @@ public class EngineSetupReleaseTests
                 .Single(t => t.Text == vm.SelectionText);
             var empty = vm.SelectionText;
             Assert.False(check.IsChecked);
-            Assert.False(install.IsEffectivelyEnabled);
-            Assert.False(vm.InstallCommand.CanExecute(null));
+            // The required package is ticked already: the install button is live at open (its download is what
+            // StartRequiredEngines starts automatically), and the selection text names it.
+            Assert.True(install.IsEffectivelyEnabled);
+            Assert.True(vm.InstallCommand.CanExecute(null));
 
             check.IsChecked = true;
             Pump();
@@ -128,7 +131,8 @@ public class EngineSetupReleaseTests
             package.Selected = false;
             Pump();
             Assert.False(check.IsChecked);
-            Assert.False(install.IsEffectivelyEnabled);
+            // Unticking the optional one leaves the required one: the button stays live.
+            Assert.True(install.IsEffectivelyEnabled);
             Assert.Equal(empty, vm.SelectionText);
             Assert.Equal(vm.SelectionText, selection.Text);
 
